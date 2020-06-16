@@ -1,0 +1,54 @@
+#main {
+    align-items: center;
+    background-color:#47331d;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2vw;
+}
+
+
+#clock {
+    background-image: url(https://images.unsplash.com/photo-1515446134809-993c501ca304?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 2px double #180e05; 
+    border-radius: 10px;
+    padding: 0;
+    position: relative;
+}
+
+#led-board {
+    background-color: rgba(71, 51, 29,.8); 
+    border: 2px dotted #884722; 
+    border-radius: 10px;
+    margin: 15px 0;
+}
+
+#hours, #minutes, #seconds{
+    padding: 2px;
+}
+
+#minutes {
+    border: 2px dotted #884722;
+    border-top: none;
+    border-bottom: none; 
+
+}
+
+.led {
+    background-color: #00394e;
+    border: 2px solid rgb(0, 22, 31);
+    border-radius: 50%;
+    height: 10vh;
+    margin: 15px 2px;
+    max-height: 10vw;
+    max-width: 10vh;
+    transition: all .3s ease-out;
+    width: 10vw;
+}
+
+.led-on {
+    box-shadow: inset 0 0 20px #87f8f8;
+}
