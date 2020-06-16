@@ -2,7 +2,6 @@
  * Returns a 4-digit binary string representation of a number 'num'
  */
 function toBinary(num){
-    
     const BINARY = {
         '0': '0000',
         '1': '0001',
@@ -18,6 +17,8 @@ function toBinary(num){
 
     return BINARY[num.toString()]
 }
+
+
 /**
  * Returns the tens digit of a number 'num'
  */
@@ -54,6 +55,8 @@ function updateClock(){
     };
 
 
+    // create object containing binary digits 
+    // for tens and ones digits of hr, min, sec
     let keys = Object.keys(digits)
     binaryDigits = {};
     for(let i=0; i<keys.length; i++){
@@ -67,62 +70,56 @@ function updateClock(){
         }
 
     }
+
+    // Loop through ['hours', 'minutes', 'seconds']
+    // and update DOM based on the binary values
+    // for each digit
     entries = Object.entries(binaryDigits)
     for(i=0; i<entries.length; i++){
         key   = entries[i][0];
         value = entries[i][1];
 
+        // grab all led divs from the DOM
         tens_leds = document.querySelectorAll(`#${key} .tens .led`)
         ones_leds = document.querySelectorAll(`#${key} .ones .led`)
         
+        // create lists of binary values for each
+        // digit of hr, min, sec
         tens_arr = value.tens.split('')
         ones_arr = value.ones.split('')
         
-        console.log(tens_arr)
-        
-        for(let k=tens_leds.length-1; k>=0; k--){
+        // light up tens leds
+        for(let k=0; k<tens_arr.length; k++){
             tens_led = tens_leds[k];
             
-            if (tens_led){
-                console.log(k, tens_led)
-
-                if(tens_arr[k] == 1){
-                    if(!tens_led.classList.contains('led-on')){
-                        tens_led.classList.add('led-on')
-                    }
-                } else {
-                    tens_led.classList.remove('led-on')
+            if(tens_arr[k] == 1){
+                if(!tens_led.classList.contains('led-on')){
+                    tens_led.classList.add('led-on')
                 }
+            } else {
+                tens_led.classList.remove('led-on')
             }
         }
-        // console.log(ones_arr)
 
-        // for(let j=ones_arr.length-1; j>=0; j--){
-        //     ones_led = ones_leds[j];
+        // light up ones leds
+        for(let j=0; j<ones_arr.length; j++){
+            ones_led = ones_leds[j];
             
-        //     if (ones_led){
-                // console.log(j, ones_led)
-
-        //         if(ones_arr[j] == 1){
-        //             if(!ones_led.classList.contains('led-on')){
-        //                 ones_led.classList.add('led-on')
-        //             }
-        //         } else {
-        //             ones_led.classList.remove('led-on')
-        //         }
-        //     }
-        // }
+            if(ones_arr[j] == 1){
+                if(!ones_led.classList.contains('led-on')){
+                    ones_led.classList.add('led-on')
+                }
+            } else {
+                ones_led.classList.remove('led-on')
+            }
+        
+        }
     }
-
-    // console.log(digits.hours, digits.minutes, digits.seconds)
     
 }
 
 window.onload = function(){
 
-
-
-    // setInterval(updateClock,1000)
-    updateClock()
+    setInterval(updateClock,1000)
 
 }
